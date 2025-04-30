@@ -5,26 +5,25 @@ import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-
 import androidx.navigation.NavHostController
-
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.faith.harakamall.ui.screens.auth.LoginScreen
 import com.faith.harakamall.ui.screens.auth.RegisterScreen
+import com.faith.harakamall.ui.screens.splash.SplashScreen
 import com.faith.rootranch.data.UserDatabase
 import com.faith.rootranch.repository.UserRepository
-import com.faith.rootranch.viewmodel.AuthViewModel
+import com.faith.rootranch.ui.screens.auth.LoginScreen
 import com.faith.rootranch.ui.theme.Screens.about.AboutScreen
 import com.faith.rootranch.ui.theme.Screens.contact.ContactScreen
+import com.faith.rootranch.viewmodel.AuthViewModel
 
 @RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
-    startDestination: String = ROUT_ADD_PRODUCT,
+    startDestination: String = ROUT_SPLASH,
 
 ) {
     val context= LocalContext.current
@@ -42,6 +41,10 @@ fun AppNavHost(
         }
         composable(ROUT_CONTACT) {
             ContactScreen(navController)
+
+        }
+        composable(ROUT_SPLASH) {
+            SplashScreen(navController)
 
         }
 
