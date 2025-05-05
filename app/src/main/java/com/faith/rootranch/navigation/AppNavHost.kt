@@ -14,8 +14,10 @@ import com.faith.harakamall.ui.screens.splash.SplashScreen
 import com.faith.rootranch.data.UserDatabase
 import com.faith.rootranch.repository.UserRepository
 import com.faith.rootranch.ui.screens.auth.LoginScreen
-import com.faith.rootranch.ui.theme.Screens.about.AboutScreen
-import com.faith.rootranch.ui.theme.Screens.contact.ContactScreen
+import com.faith.rootranch.ui.theme.screens.about.AboutScreen
+import com.faith.rootranch.ui.theme.screens.contact.ContactScreen
+import com.faith.rootranch.ui.theme.screens.home.HomeScreen
+import com.faith.rootranch.ui.theme.screens.item.ItemScreen
 import com.faith.rootranch.viewmodel.AuthViewModel
 
 @RequiresApi(Build.VERSION_CODES.Q)
@@ -45,6 +47,10 @@ fun AppNavHost(
         }
         composable(ROUT_SPLASH) {
             SplashScreen(navController)
+
+        }
+        composable(ROUT_ITEM) {
+            ItemScreen(navController)
 
         }
 
@@ -82,12 +88,3 @@ fun AppNavHost(
     }
 }
 
-@Composable
-fun HomeScreen(x0: NavHostController) {
-    TODO("Not yet implemented")
-}
-
-@Composable
-fun SamathaScreen(x0: NavHostController) {
-    TODO("Not yet implemented")
-}

@@ -6,6 +6,7 @@ const val ROUT_CONTACT = "contact"
 const val ROUT_SPLASH = "splash"
 const val ROUT_REGISTER = "register"
 const val ROUT_LOGIN = "login"
+const val ROUT_ITEM = "item"
 
 
 //Products

@@ -1,13 +1,12 @@
-package com.faith.rootranch.ui.theme.Screens.contact
+package com.faith.rootranch.ui.theme.screens.about
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 
-
 @Composable
-fun ContactScreen(navController: NavController){
+fun AboutScreen(navController: NavController){
 
 
 
@@ -18,6 +17,6 @@ fun ContactScreen(navController: NavController){
 
 @Preview(showBackground = true)
 @Composable
-fun ContactScreenPreview(){
-    ContactScreen(rememberNavController())
+fun AboutScreenPreview(){
+    AboutScreen(rememberNavController())
 }
