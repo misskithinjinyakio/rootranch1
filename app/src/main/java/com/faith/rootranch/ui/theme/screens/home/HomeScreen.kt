@@ -65,6 +65,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.faith.rootranch.R
 import com.faith.rootranch.navigation.ROUT_ABOUT
+import com.faith.rootranch.navigation.ROUT_CONTACT
 import com.faith.rootranch.navigation.ROUT_HOME
 import com.faith.rootranch.navigation.ROUT_ITEM
 import com.faith.rootranch.ui.theme.neworange
@@ -84,7 +85,7 @@ fun HomeScreen(navController: NavController){
         //TopBar
         topBar = {
             TopAppBar(
-                title = { Text("HOMEPAGE") },
+                title = { Text("ROOTRANCH FARM") },
                 navigationIcon = {
                     IconButton(onClick = { /* Handle back/nav */ }) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back")
@@ -115,34 +116,29 @@ fun HomeScreen(navController: NavController){
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Favorite, contentDescription = "Favorites") },
-                    label = { Text("Favorites") },
-                    selected = selectedIndex == 1,
-                    onClick = { selectedIndex = 1
-                        // navController.navigate(ROUT_HOME)
+                    icon = { Icon(Icons.Default.Search, contentDescription = "Home") },
+                    label = { Text("search") },
+                    selected = selectedIndex == 0,
+                    onClick = { selectedIndex = 0
+                        navController.navigate(ROUT_HOME)
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Person, contentDescription = "Profile") },
-                    label = { Text("Profile") },
-                    selected = selectedIndex == 2,
-                    onClick = { selectedIndex = 2
-                        //  navController.navigate(ROUT_HOME)
+                    icon = { Icon(Icons.Default.Search, contentDescription = "Home") },
+                    label = { Text("search") },
+                    selected = selectedIndex == 0,
+                    onClick = { selectedIndex = 0
+                        navController.navigate(ROUT_HOME)
                     }
                 )
+
+
+
 
             }
         },
 
         //FloatingActionButton
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = { /* Add action */ },
-                containerColor = Color.LightGray
-            ) {
-                Icon(Icons.Default.Add, contentDescription = "Add")
-            }
-        },
         content = { paddingValues ->
             Column(
                 modifier = Modifier
@@ -169,14 +165,22 @@ fun HomeScreen(navController: NavController){
                         Column(
                             modifier = Modifier.fillMaxSize(),
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center
+                            verticalArrangement = Arrangement.Top
                         ) {
                             Text(text = "WELCOME TO ROOTRANCH FARM",
                                 fontSize = 20.sp,
                                 fontStyle = FontStyle.Italic,
 
                                 color = Color.Black)
-                            Spacer(modifier = Modifier.height(40.dp))
+
+                            Image(
+                                painter = painterResource(R.drawable.cow),
+                                contentDescription = "home" ,
+                                modifier = Modifier.size(300.dp).clip(shape = CircleShape),
+                                contentScale = ContentScale.Crop
+
+
+                            )
 
 
                             Text(text = "Empowering Farmers With Smart Solutions", fontSize = 20.sp,
@@ -235,10 +239,10 @@ fun HomeScreen(navController: NavController){
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center) {
                             Image(
-                                painter = painterResource(R.drawable.profile),
+                                painter = painterResource(R.drawable.cow),
                                 contentDescription = "home"
                             )
-                            Text(text = "about us", fontSize = 15.sp)
+                            Text(text = "taking of animals is not ana easy task it requires confident and much attention,for soft hearted can very treaky becouse the losse are so much to bear .This not to dicourage any one but yhe facts of animal farming ", fontSize = 10.sp)
                         }
 
                     }
@@ -266,10 +270,10 @@ fun HomeScreen(navController: NavController){
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center) {
                             Image(
-                                painter = painterResource(R.drawable.gallery),
+                                painter = painterResource(R.drawable.cow),
                                 contentDescription = "home"
                             )
-                            Text(text = "product", fontSize = 15.sp)
+                            Text(text = "Many can ask why did we choose animal farming only.This is why ,doing both it possible for 100 % success we decided to put more attention on animal only ", fontSize = 10.sp)
                         }
 
                     }
@@ -285,12 +289,39 @@ fun HomeScreen(navController: NavController){
                         Column(modifier = Modifier.fillMaxSize(),
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center) {
-                            Image(
-                                painter = painterResource(R.drawable.contacticon),
-                                contentDescription = "home",
-                                modifier = Modifier.height(60.dp).width(60.dp)
+
+                            Button(onClick = {
+                                navController.navigate(ROUT_ABOUT)
+                            },
+                                colors= ButtonDefaults.buttonColors(Color.Black),
+                                shape = RoundedCornerShape(10.dp),
+                                modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
                             )
-                            Text(text = "contacts", fontSize = 15.sp)
+                            { Text(text = "Go About us..", fontSize = 10.sp, fontStyle = FontStyle.Italic,) }
+                            Button(onClick = {
+                                navController.navigate(ROUT_ABOUT)
+                            },
+                                colors= ButtonDefaults.buttonColors(Color.Black),
+                                shape = RoundedCornerShape(10.dp),
+                                modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
+                            )
+                            { Text(text = "Go to choose and buy product..", fontSize = 10.sp, fontStyle = FontStyle.Italic,) }
+                            Button(onClick = {
+                                navController.navigate(ROUT_ITEM)
+                            },
+                                colors= ButtonDefaults.buttonColors(Color.Black),
+                                shape = RoundedCornerShape(10.dp),
+                                modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
+                            )
+                            { Text(text = "contact us", fontSize = 10.sp, fontStyle = FontStyle.Italic,) }
+                            Button(onClick = {
+                                navController.navigate(ROUT_CONTACT)
+                            },
+                                colors= ButtonDefaults.buttonColors(Color.Black),
+                                shape = RoundedCornerShape(10.dp),
+                                modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
+                            )
+                            { Text(text = "Exit the app..", fontSize = 10.sp, fontStyle = FontStyle.Italic,) }
                         }
 
                     }
