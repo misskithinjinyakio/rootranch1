@@ -3,7 +3,7 @@ package com.faith.rootranch.repository
 
 
 import com.faith.rootranch.data.UserDao
-import com.faith.rootranch.moadel.User
+import com.faith.rootranch.model.User
 
 class UserRepository(private val userDao: UserDao) {
     suspend fun registerUser(user: User) {

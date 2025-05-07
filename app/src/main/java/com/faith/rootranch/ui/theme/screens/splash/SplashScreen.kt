@@ -32,6 +32,7 @@ import com.faith.rootranch.navigation.ROUT_LOGIN
 import com.faith.rootranch.navigation.ROUT_HOME
 import com.faith.rootranch.ui.theme.neworange
 import com.faith.rootranch.navigation.ROUT_LOGIN
+import com.faith.rootranch.navigation.ROUT_REGISTER
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -42,14 +43,14 @@ fun SplashScreen(navController: NavController){
     //navigation
     val coroutine= rememberCoroutineScope()
     coroutine.launch {
-        delay(2000)
-        navController.navigate(ROUT_HOME)
+        delay(3000)
+        navController.navigate(ROUT_REGISTER)
 
     }
     //end of navigation
     Column(
-        modifier = Modifier
-            .height(height = 300.dp)
+        modifier = Modifier.fillMaxSize()
+
             .paint(painter = painterResource(R.drawable.img), contentScale = ContentScale.FillBounds),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center

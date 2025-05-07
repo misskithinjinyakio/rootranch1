@@ -4,7 +4,7 @@ package com.faith.rootranch.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
-import com.faith.rootranch.moadel.User
+import com.faith.rootranch.model.User
 import com.faith.rootranch.repository.UserRepository
 import kotlinx.coroutines.launch
 

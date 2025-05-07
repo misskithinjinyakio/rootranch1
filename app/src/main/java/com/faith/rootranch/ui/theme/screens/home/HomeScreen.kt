@@ -4,6 +4,7 @@ package com.faith.rootranch.ui.theme.screens.home
 
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,6 +24,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
@@ -53,7 +56,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
@@ -74,285 +80,285 @@ import com.faith.rootranch.ui.theme.screens.contact.ContactScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavController){
-
-
-    //Scaffold
-
+fun HomeScreen(navController: NavController) {
     var selectedIndex by remember { mutableStateOf(0) }
 
     Scaffold(
-        //TopBar
         topBar = {
             TopAppBar(
-                title = { Text("ROOTRANCH FARM") },
+
                 navigationIcon = {
-                    IconButton(onClick = { /* Handle back/nav */ }) {
+                    IconButton(onClick = { /* Handle back */ }) {
                         Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    }
+                },
+                actions = {
+                    IconButton(onClick = {}) {
+                        Icon(imageVector = Icons.Default.Email, contentDescription = "menu")
                     }
 
 
-                },
+                }  ,title = { Text("RootRanch") },
+
+
+
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = Color.Black,
                     titleContentColor = Color.White,
                     navigationIconContentColor = Color.White
                 )
-
             )
         },
-
-        //BottomBar
         bottomBar = {
-            NavigationBar(
-                containerColor = Color.Black
-            ){
+            NavigationBar(containerColor = Color.Black) {
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Search, contentDescription = "Home") },
-                    label = { Text("search") },
+                    icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
+                    label = { Text("Home") },
                     selected = selectedIndex == 0,
-                    onClick = { selectedIndex = 0
+                    onClick = {
+                        selectedIndex = 0
                         navController.navigate(ROUT_HOME)
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Search, contentDescription = "Home") },
-                    label = { Text("search") },
-                    selected = selectedIndex == 0,
-                    onClick = { selectedIndex = 0
-                        navController.navigate(ROUT_HOME)
+                    icon = { Icon(Icons.Default.Person, contentDescription = "About") },
+                    label = { Text("About") },
+                    selected = selectedIndex == 1,
+                    onClick = {
+                        selectedIndex = 1
+                        navController.navigate(ROUT_ABOUT)
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Search, contentDescription = "Home") },
-                    label = { Text("search") },
-                    selected = selectedIndex == 0,
-                    onClick = { selectedIndex = 0
-                        navController.navigate(ROUT_HOME)
+                    icon = { Icon(Icons.Default.Settings, contentDescription = "Contact") },
+                    label = { Text("Contact") },
+                    selected = selectedIndex == 2,
+                    onClick = {
+                        selectedIndex = 2
+                        navController.navigate(ROUT_CONTACT)
                     }
                 )
-
-
-
-
             }
         },
-
-        //FloatingActionButton
         content = { paddingValues ->
             Column(
                 modifier = Modifier
                     .padding(paddingValues)
                     .fillMaxSize()
-
+                    .background(
+                        brush = Brush.verticalGradient(
+                            colors = listOf(Color(0xFFFFF3E0), Color(0xFFFFCC80))
+                        )
+                    )
             ) {
+                Image(
+                painter = painterResource(R.drawable.logo),
+                contentDescription = "Home Cow",
+                modifier = Modifier
+                    .size(120.dp)
+                    .clip(CircleShape),
+                contentScale = ContentScale.Crop
+            )
+                Text(text = "Number One Trusted In Animal Farming",fontStyle = FontStyle.Italic)
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(250.dp)
+                        .align(Alignment.Start)
+                        .padding(horizontal = 20.dp)
+                        .offset(y = 90.dp),
+                    shape = RoundedCornerShape(30.dp)
+                ) {
+                    Column(
+                        modifier = Modifier.fillMaxSize().padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Top
+                    ) {
+                        Text(
+                            text = "WELCOME TO ROOTRANCH FARM",
+                            fontSize = 20.sp,
+                            fontStyle = FontStyle.Italic,
+                            color = Color.Black
+                        )
 
+                        Image(
+                            painter = painterResource(R.drawable.cow),
+                            contentDescription = "Home Cow",
+                            modifier = Modifier
+                                .size(120.dp)
+                                .clip(CircleShape),
+                            contentScale = ContentScale.Crop
+                        )
 
-                //Main Contents of the page
-                //box
-                Box(){
-                    //card
+                        Spacer(modifier = Modifier.height(8.dp))
 
-                    //end of card
-                    Card (
-                        modifier= Modifier.fillMaxWidth().height(250.dp)
-                            .align(alignment = Alignment.BottomCenter)
-                            .padding(start = 20.dp, end = 20.dp)
-                            .offset(y=90.dp),
-                        shape = RoundedCornerShape(bottomStart = 60.dp, bottomEnd = 60.dp, topStart = 60.dp, topEnd = 60.dp)
-                    ){
+                        Text(
+                            text = "Empowering Farmers With Smart Solutions",
+                            fontSize = 16.sp,
+                            textAlign = TextAlign.Center,
+                            color = Color.Black
+                        )
 
-                        Column(
-                            modifier = Modifier.fillMaxSize(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Top
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        Button(
+                            onClick = { navController.navigate(ROUT_ABOUT) },
+                            colors = ButtonDefaults.buttonColors(Color.Black),
+                            shape = RoundedCornerShape(10.dp),
+                            modifier = Modifier.fillMaxWidth()
                         ) {
-                            Text(text = "WELCOME TO ROOTRANCH FARM",
-                                fontSize = 20.sp,
-                                fontStyle = FontStyle.Italic,
-
-                                color = Color.Black)
-
-                            Image(
-                                painter = painterResource(R.drawable.cow),
-                                contentDescription = "home" ,
-                                modifier = Modifier.size(300.dp).clip(shape = CircleShape),
-                                contentScale = ContentScale.Crop
-
-
-                            )
-
-
-                            Text(text = "Empowering Farmers With Smart Solutions", fontSize = 20.sp,
-                                textAlign = TextAlign.Center,
-
-
-                                color = Color.Black)
-
-                            Spacer(modifier = Modifier.height(40.dp))
-                            Button(onClick = {
-                                navController.navigate(ROUT_ABOUT)
-                            },
-                                colors= ButtonDefaults.buttonColors(Color.Black),
-                                shape = RoundedCornerShape(10.dp),
-                                modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
-                            )
-                            { Text(text = " learn more...", fontStyle = FontStyle.Italic,) }
+                            Text(text = "Learn more...", fontStyle = FontStyle.Italic)
                         }
                     }
-
-                }
-                //end of box
-                Spacer(modifier = Modifier.height(100.dp))
-                //Row
-                Row (modifier = Modifier.padding(start = 20.dp)){
-
-
-                    //card 1
-                    Card (
-                        modifier = Modifier.width(150.dp).height(180.dp)
-                    ){
-                        Column(modifier = Modifier.fillMaxSize(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Top) {
-                            Image(
-                                painter = painterResource(R.drawable.cow),
-                                contentDescription = "home"
-                            )
-                            Spacer(modifier = Modifier.height(10.dp))
-                            Text(text = "On animal management there are several things to look upto that are:", fontSize = 10.sp)
-                            Text(text = "vaccinating your animals every season, to make sure they are health and safe from diseases", fontSize = 10.sp)
-                            Text(text = "Providing good sheltering, that can keep them warm and safe from pests", fontSize = 10.sp)
-                            Text(text = "Giving your animal enough and healthy food and others life saving things such as salt and water", fontSize = 10.sp)
-                        }
-
-                    }
-                    //end of card 1
-                    Spacer(modifier = Modifier.width(40.dp))
-                    //card 2
-                    Card (
-                        modifier = Modifier.width(150.dp).height(180.dp).clickable{navController.navigate(
-                            ROUT_ABOUT
-                        )}
-                    ){
-                        Column(modifier = Modifier.fillMaxSize(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center) {
-                            Image(
-                                painter = painterResource(R.drawable.cow),
-                                contentDescription = "home"
-                            )
-                            Text(text = "taking of animals is not ana easy task it requires confident and much attention,for soft hearted can very treaky becouse the losse are so much to bear .This not to dicourage any one but yhe facts of animal farming ", fontSize = 10.sp)
-                        }
-
-                    }
-                    //end of card 1
-
                 }
 
+                Spacer(modifier = Modifier.height(140.dp))
 
+                Text(
+                    text = "Animal Care Tips",
+                    fontSize = 20.sp,
+                    modifier = Modifier.padding(start = 20.dp, bottom = 8.dp),
+                    color = Color.DarkGray
+                )
 
-
-
-
-                //end of row
-
-                Spacer(modifier = Modifier.height(20.dp))
-
-                //Row
-                Row (modifier = Modifier.padding(start = 20.dp)){
-
-
-                    //card 3
-                    Card (modifier = Modifier.width(150.dp).height(180.dp).clickable{navController.navigate(ROUT_ITEM)}
-                    ){
-                        Column(modifier = Modifier.fillMaxSize(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center) {
+                Row(modifier = Modifier.padding(start = 20.dp)) {
+                    Card(
+                        modifier = Modifier
+                            .width(150.dp)
+                            .height(180.dp)
+                            .shadow(4.dp, RoundedCornerShape(12.dp)),
+                        shape = RoundedCornerShape(12.dp)
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(8.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
                             Image(
                                 painter = painterResource(R.drawable.cow),
-                                contentDescription = "home"
+                                contentDescription = "Cow",
+                                modifier = Modifier.size(100.dp).clip(CircleShape)
                             )
-                            Text(text = "Many can ask why did we choose animal farming only.This is why ,doing both it possible for 100 % success we decided to put more attention on animal only ", fontSize = 10.sp)
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                text = "Vaccinate regularly, offer shelter and nutrition.",
+                                fontSize = 12.sp,
+                                textAlign = TextAlign.Center
+                            )
                         }
-
                     }
-                    //end of card 1
-                    Spacer(modifier = Modifier.width(40.dp))
-                    //card 2
 
-                    Card (modifier = Modifier.width(150.dp).height(180.dp)
-                        .clickable{navController.navigate(
-                            ROUT_ITEM
-                        )}
-                    ){
-                        Column(modifier = Modifier.fillMaxSize(),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center) {
+                    Spacer(modifier = Modifier.width(20.dp))
 
-                            Button(onClick = {
-                                navController.navigate(ROUT_ABOUT)
-                            },
-                                colors= ButtonDefaults.buttonColors(Color.Black),
-                                shape = RoundedCornerShape(10.dp),
-                                modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
+                    Card(
+                        modifier = Modifier
+                            .width(150.dp)
+                            .height(180.dp)
+                            .clickable { navController.navigate(ROUT_ABOUT) }
+                            .shadow(4.dp, RoundedCornerShape(12.dp)),
+                        shape = RoundedCornerShape(12.dp)
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(8.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.cow),
+                                contentDescription = "Cow",
+                                modifier = Modifier.size(100.dp).clip(CircleShape)
                             )
-                            { Text(text = "Go About us..", fontSize = 10.sp, fontStyle = FontStyle.Italic,) }
-                            Button(onClick = {
-                                navController.navigate(ROUT_ABOUT)
-                            },
-                                colors= ButtonDefaults.buttonColors(Color.Black),
-                                shape = RoundedCornerShape(10.dp),
-                                modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                text = "Animal care requires attention and dedication.",
+                                fontSize = 12.sp,
+                                textAlign = TextAlign.Center
                             )
-                            { Text(text = "Go to choose and buy product..", fontSize = 10.sp, fontStyle = FontStyle.Italic,) }
-                            Button(onClick = {
-                                navController.navigate(ROUT_ITEM)
-                            },
-                                colors= ButtonDefaults.buttonColors(Color.Black),
-                                shape = RoundedCornerShape(10.dp),
-                                modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
-                            )
-                            { Text(text = "contact us", fontSize = 10.sp, fontStyle = FontStyle.Italic,) }
-                            Button(onClick = {
-                                navController.navigate(ROUT_CONTACT)
-                            },
-                                colors= ButtonDefaults.buttonColors(Color.Black),
-                                shape = RoundedCornerShape(10.dp),
-                                modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
-                            )
-                            { Text(text = "Exit the app..", fontSize = 10.sp, fontStyle = FontStyle.Italic,) }
                         }
-
                     }
-                    //end of card 1
-
                 }
 
+                Spacer(modifier = Modifier.height(24.dp))
 
+                Text(
+                    text = "Quick Actions",
+                    fontSize = 20.sp,
+                    modifier = Modifier.padding(start = 20.dp, bottom = 8.dp),
+                    color = Color.DarkGray
+                )
 
+                Row(modifier = Modifier.padding(start = 20.dp, bottom = 40.dp)) {
+                    Card(
+                        modifier = Modifier
+                            .width(150.dp)
+                            .height(180.dp)
+                            .clickable { navController.navigate(ROUT_ITEM) }
+                            .shadow(4.dp, RoundedCornerShape(12.dp)),
+                        shape = RoundedCornerShape(12.dp)
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(8.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            Image(
+                                painter = painterResource(R.drawable.cow),
+                                contentDescription = "Cow",
+                                modifier = Modifier.size(100.dp).clip(CircleShape)
+                            )
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                text = "Why animal farming? Focus yields better results.",
+                                fontSize = 12.sp,
+                                textAlign = TextAlign.Center
+                            )
+                        }
+                    }
 
+                    Spacer(modifier = Modifier.width(20.dp))
 
-
-
-
-
-
-
-
+                    Card(
+                        modifier = Modifier
+                            .width(150.dp)
+                            .height(180.dp)
+                            .shadow(4.dp, RoundedCornerShape(12.dp)),
+                        shape = RoundedCornerShape(12.dp)
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(8.dp),
+                            verticalArrangement = Arrangement.Center
+                        ) {
+                            Button(
+                                onClick = { navController.navigate(ROUT_ABOUT) },
+                                colors = ButtonDefaults.buttonColors(Color.Black),
+                                shape = RoundedCornerShape(8.dp),
+                                modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                            ) {
+                                Text("About Us", fontSize = 12.sp)
+                            }
+                            Button(
+                                onClick = { navController.navigate(ROUT_ITEM) },
+                                colors = ButtonDefaults.buttonColors(Color.Black),
+                                shape = RoundedCornerShape(8.dp),
+                                modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                            ) {
+                                Text("Shop Products", fontSize = 12.sp)
+                            }
+                            Button(
+                                onClick = { navController.navigate(ROUT_CONTACT) },
+                                colors = ButtonDefaults.buttonColors(Color.Black),
+                                shape = RoundedCornerShape(8.dp),
+                                modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                            ) {
+                                Text("Contact Us", fontSize = 12.sp)
+                            }
+                        }
+                    }
+                }
             }
         }
     )
-
-    //End of scaffold
-
-
-
 }
-
 
 @Preview(showBackground = true)
 @Composable
-fun HomeScreenPreview(){
+fun HomeScreenPreview() {
     HomeScreen(rememberNavController())
 }

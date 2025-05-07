@@ -54,7 +54,7 @@ fun LoginScreen(
                     navController.navigate(ROUT_HOME) {
                     }
                 } else {
-                    navController.navigate(ROUT_CONTACT) {
+                    navController.navigate(ROUT_HOME) {
                     }
                 }
             }

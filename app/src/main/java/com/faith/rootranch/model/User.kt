@@ -1,4 +1,4 @@
-package com.faith.rootranch.moadel
+package com.faith.rootranch.model
 
 
 

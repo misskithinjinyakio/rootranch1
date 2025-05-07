@@ -14,8 +14,11 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
@@ -51,22 +54,22 @@ fun OrderScreen(navController: NavController){
         .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center){
-        Text(text = "Create An ACCOUNT", fontWeight = FontWeight.ExtraBold,
+        Text(text = "Make your order", fontWeight = FontWeight.ExtraBold,
             fontSize = (30.sp)
         )
         Spacer(modifier = Modifier.height(20.dp))
         Image(
-            painter = painterResource(R.drawable.image1),
+            painter = painterResource(R.drawable.cow),
             contentDescription = "home",
             modifier = Modifier.size(200.dp)
         )
         Spacer(modifier = Modifier.height(20.dp))
 
         var fullname by remember { mutableStateOf("") }
-        var username by remember { mutableStateOf("") }
-        var password by remember { mutableStateOf("") }
-        var rewritepassword by remember { mutableStateOf("") }
-        var email by remember { mutableStateOf("") }
+        var productname by remember { mutableStateOf("") }
+        var price by remember { mutableStateOf("") }
+        var phonenumber by remember { mutableStateOf("") }
+        var location by remember { mutableStateOf("") }
         //fullname
         OutlinedTextField(
             value = fullname,
@@ -84,11 +87,11 @@ fun OrderScreen(navController: NavController){
         Spacer(modifier = Modifier.height(20.dp))
         //USERNAME
         OutlinedTextField(
-            value = username,
-            onValueChange = {username=it},
+            value = productname ,
+            onValueChange = {productname =it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
             leadingIcon = { Icon(imageVector = Icons.Default.Face, contentDescription = "") },
-            label ={Text(text = "USERNAME")},
+            label ={Text(text = "productname")},
             colors = OutlinedTextFieldDefaults.colors(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
 
@@ -97,11 +100,11 @@ fun OrderScreen(navController: NavController){
         Spacer(modifier = Modifier.height(20.dp))
         //EMAIL
         OutlinedTextField(
-            value = email,
-            onValueChange = {email=it},
+            value = price,
+            onValueChange = {price=it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "") },
-            label ={Text(text = "email")},
+            leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
+            label ={Text(text = "price")},
             colors = OutlinedTextFieldDefaults.colors(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
 
@@ -110,28 +113,26 @@ fun OrderScreen(navController: NavController){
         Spacer(modifier = Modifier.height(20.dp))
         //PASSWORD
         OutlinedTextField(
-            value = password,
-            onValueChange = {password=it},
+            value = phonenumber,
+            onValueChange = {phonenumber=it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
-            label ={Text(text = "PASSWORD")},
+            leadingIcon = { Icon(imageVector = Icons.Default.Phone, contentDescription = "") },
+            label ={Text(text = "phonenumber")},
             colors = OutlinedTextFieldDefaults.colors(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            visualTransformation = PasswordVisualTransformation()
 
         )
         //end of PASSWORD
         Spacer(modifier = Modifier.height(20.dp))
         //PASSWORD
         OutlinedTextField(
-            value = rewritepassword,
-            onValueChange = {rewritepassword=it},
+            value = location,
+            onValueChange = {location=it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
-            label ={Text(text = "rewritepassword")},
+            leadingIcon = { Icon(imageVector = Icons.Default.LocationOn, contentDescription = "") },
+            label ={Text(text = "location")},
             colors = OutlinedTextFieldDefaults.colors(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-            visualTransformation = PasswordVisualTransformation()
+
+
 
         )
         //end of PASSWORD
@@ -139,11 +140,11 @@ fun OrderScreen(navController: NavController){
         Button(onClick = {
 
         },
-            colors= ButtonDefaults.buttonColors(Color.Red),
+            colors= ButtonDefaults.buttonColors(Color.Black),
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
         )
-        { Text(text = "SUBMIT") }
+        { Text(text = "SEND ORDER") }
 
 
 

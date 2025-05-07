@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -28,7 +29,11 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -51,12 +56,14 @@ fun AboutScreen(navController: NavController){
         Box(){
             //card
             Card(
-                modifier= Modifier.fillMaxWidth().height(300.dp),
+                modifier= Modifier.fillMaxWidth().height(300.dp)
+                .paint(painter = painterResource(R.drawable.farm2), contentScale = ContentScale.FillBounds)
+            ,
                 shape = RoundedCornerShape(bottomStart = 60.dp, bottomEnd = 60.dp),
                 colors = CardDefaults.cardColors(neworange1)
             ) {
                 TopAppBar(
-                    title = { Text(text = "Dashbaord section") },
+                    title = { Text(text = "ABOUT US") },
                     navigationIcon = {
                         IconButton(onClick = {}) {Icon(imageVector = Icons.Default.Menu, contentDescription = "") }             } )
 
@@ -72,25 +79,24 @@ fun AboutScreen(navController: NavController){
 
                 Column(
                     modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                   
                 ) {
                     Row (modifier = Modifier.padding(start = 20.dp)){
 
 
                         //card 1
                         Card (
-                            modifier = Modifier.width(150.dp).height(180.dp).clickable{navController.navigate(
+                            modifier = Modifier.width(150.dp).height(400.dp).clickable{navController.navigate(
                                 ROUT_HOME
                             )}
                         ){
                             Column(modifier = Modifier.fillMaxSize(),
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.Center) {
-                                Text(text = "WHO ARE WE", fontSize = 20.sp)
+                                Text(text = "WHO ARE WE", fontSize = 20.sp, fontWeight = FontWeight.ExtraBold)
                            Text(text = "\n" +
                                    "\n" +
-                                   "Kenya Ranches operate an extensive database of properties owned by us and our associates or partners, which are either available for Sale or Lease.\n" +
+                                   "RootRanch operate an extensive database of properties owned by us and our associates or partners, which are either available for Sale or Lease.\n" +
                                    "\n" +
                                    "Kenya Ranches expertise has grown over the years to source large - scale properties with potential. These are now used throughout the region to provide land that gives our clients excellent value. \n" +
                                    "\n" +
@@ -108,7 +114,7 @@ fun AboutScreen(navController: NavController){
                         Spacer(modifier = Modifier.width(40.dp))
                         //card 2
                         Card (
-                            modifier = Modifier.width(150.dp).height(180.dp).clickable{navController.navigate(
+                            modifier = Modifier.width(150.dp).height(400.dp).clickable{navController.navigate(
                                 ROUT_ABOUT
                             )}
                         ){
@@ -116,10 +122,12 @@ fun AboutScreen(navController: NavController){
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.Center) {
                                 Image(
-                                    painter = painterResource(R.drawable.profile),
-                                    contentDescription = "home"
+                                    painter = painterResource(R.drawable.farm2),
+                                    contentDescription = "home",
+                                            modifier = Modifier.fillMaxHeight().clip(shape = RoundedCornerShape(20.dp)),
+                                    contentScale= ContentScale.FillWidth
                                 )
-                                Text(text = "about us", fontSize = 15.sp)
+
                             }
 
                         }
@@ -146,8 +154,16 @@ fun AboutScreen(navController: NavController){
                             Column(modifier = Modifier.fillMaxSize(),
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.Center) {
+                                Image(
+                                    painter = painterResource(R.drawable.company),
+                                    contentDescription = "home",
+                                    modifier = Modifier.width(200.dp).height(200.dp).clip(shape = RoundedCornerShape(20.dp)),
+                                    contentScale= ContentScale.FillWidth
 
-                                Text(text = "product", fontSize = 15.sp)
+
+                                )
+
+
                             }
 
                         }
@@ -163,12 +179,21 @@ fun AboutScreen(navController: NavController){
                             Column(modifier = Modifier.fillMaxSize(),
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.Center) {
-                                Image(
-                                    painter = painterResource(R.drawable.contacticon),
-                                    contentDescription = "home",
-                                    modifier = Modifier.height(60.dp).width(60.dp)
-                                )
-                                Text(text = "contacts", fontSize = 15.sp)
+                                Text(text = "WHY US", fontSize = 20.sp, fontWeight = FontWeight.ExtraBold)
+
+
+                                Text(text = "\n" +
+                                        "\n" +
+                                        "RootRanch’ core objective is to ensure clients’ lease ventures are successful.\n" +
+                                        "\n" +
+                                        "We use our extensive experience to find the best suited land for your planned use within agreed timelines, at optimal prices, with lease durations to help you achieve your business objectives. \n" +
+                                        "\n" +
+                                        "We work to make the process of leasing or acquiring land stress-free and seamless, in order to limit potential business risks, whilst making sure we meet important deadlines. \n" +
+                                        "\n" +
+                                        "Kenya Ranches offers customised and flexible solutions for your business packed with incentives and benefits to help your business succeed.  We are passionate in developing partnerships which last long and are mutually rewarding to both parties. \n" +
+                                        "\n" +
+                                        "This is why we are the choice for discerning and prudent investors wishing to have the right sourcing team for their land leases and acquisitions.\n" +
+                                        " \n", fontSize = 15.sp)
                             }
 
                         }
