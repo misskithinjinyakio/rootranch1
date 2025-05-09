@@ -1,6 +1,7 @@
 package com.faith.rootranch.ui.theme.screens.order
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -32,6 +33,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -51,7 +53,12 @@ import com.faith.rootranch.ui.theme.neworange
 @Composable
 fun OrderScreen(navController: NavController){
     Column (modifier = Modifier
-        .fillMaxSize(),
+        .fillMaxSize()
+        .background(
+            brush = Brush.verticalGradient(
+                colors = listOf(Color(0xFFFFF3E0), Color(0xFF7CB342))
+            )
+        ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center){
         Text(text = "Make your order now !!!!", fontWeight = FontWeight.ExtraBold,

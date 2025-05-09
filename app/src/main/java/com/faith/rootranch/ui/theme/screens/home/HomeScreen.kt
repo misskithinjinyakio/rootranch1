@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -148,10 +149,10 @@ fun HomeScreen(navController: NavController) {
             Column(
                 modifier = Modifier
                     .padding(paddingValues)
-                    .fillMaxSize()
+                    .fillMaxHeight()
                     .background(
                         brush = Brush.verticalGradient(
-                            colors = listOf(Color(0xFFFFF3E0), Color(0xFFFFCC80))
+                            colors = listOf(Color(0xFFFFF3E0), Color(0xFF244105))
                         )
                     )
                     .verticalScroll(rememberScrollState())
@@ -164,7 +165,15 @@ fun HomeScreen(navController: NavController) {
                     .clip(CircleShape),
                 contentScale = ContentScale.Crop
             )
-                Text(text = "Number One Trusted In Animal Farming",fontStyle = FontStyle.Italic)
+                Text(text = "What to reach us on social media?",fontStyle = FontStyle.Italic)
+                Text(text = "Reach @rootranch.com ",fontStyle = FontStyle.Italic)
+                Text(text = "and rootranch in Facebook,Intagram and Tiktok",fontStyle = FontStyle.Italic)
+                Text(text = "or call us",fontStyle = FontStyle.Italic)
+                Text(text = "0741058154",fontStyle = FontStyle.Italic)
+
+
+
+
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -217,13 +226,13 @@ fun HomeScreen(navController: NavController) {
                     }
                 }
 
-                Spacer(modifier = Modifier.height(140.dp))
+                Spacer(modifier = Modifier.height(100.dp))
 
                 Text(
                     text = "Animal Care Tips",
                     fontSize = 20.sp,
                     modifier = Modifier.padding(start = 20.dp, bottom = 8.dp),
-                    color = Color.DarkGray
+                    color = Color.White
                 )
 
                 Row(modifier = Modifier.padding(start = 20.dp)) {

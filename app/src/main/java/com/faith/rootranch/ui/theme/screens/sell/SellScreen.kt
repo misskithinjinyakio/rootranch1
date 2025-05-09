@@ -1,6 +1,7 @@
 package com.faith.rootranch.ui.theme.screens.sell
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -32,8 +33,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -51,10 +54,15 @@ import com.faith.rootranch.ui.theme.neworange
 @Composable
 fun SellScreen(navController: NavController){
     Column (modifier = Modifier
-        .fillMaxSize(),
+        .fillMaxSize()
+        .background(
+            brush = Brush.verticalGradient(
+                colors = listOf(Color(0xFFFFF3E0), Color(0xFFFFCC80))
+            )
+        ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center){
-        Text(text = "UPDATE OF THE SELL", fontWeight = FontWeight.ExtraBold,
+        Text(text = "UPDATE OF THE SELL",fontStyle = FontStyle.Italic, fontWeight = FontWeight.ExtraBold,
             fontSize = (30.sp)
         )
 

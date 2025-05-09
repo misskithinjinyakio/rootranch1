@@ -63,7 +63,7 @@ fun RegisterScreen(
             Text(
                 "Create Your Account",
                 fontSize = 40.sp,
-                fontFamily = FontFamily.Cursive
+                fontFamily = FontFamily.Serif
             )
         }
 
@@ -98,8 +98,8 @@ fun RegisterScreen(
 
 
         //Role
-        var role by remember { mutableStateOf("user") }
-        val roleOptions = listOf("user", "admin")
+        var role by remember { mutableStateOf("FARMER") }
+        val roleOptions = listOf("user", "MANAGER")
         var expanded by remember { mutableStateOf(false) }
 
         ExposedDropdownMenuBox(

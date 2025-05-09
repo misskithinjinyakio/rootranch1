@@ -6,19 +6,25 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
@@ -32,8 +38,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,199 +55,138 @@ import com.faith.rootranch.navigation.ROUT_HOME
 import com.faith.rootranch.navigation.ROUT_ITEM
 import com.faith.rootranch.ui.theme.neworange
 import com.faith.rootranch.ui.theme.neworange1
+import com.faith.rootranch.ui.theme.newwhite
 import java.nio.file.WatchEvent
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AboutScreen(navController: NavController){
-    Column(modifier = Modifier.fillMaxSize().background(neworange)
+fun AboutScreen(navController: NavController) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(Color(0xFFFFF3E0), Color(0xFF264208))
+                )
+            )
+
     ) {
-        //box
-        Box(){
-            //card
-            Card(
-                modifier= Modifier.fillMaxWidth().height(300.dp)
-                .paint(painter = painterResource(R.drawable.farm2), contentScale = ContentScale.FillBounds)
-            ,
-                shape = RoundedCornerShape(bottomStart = 60.dp, bottomEnd = 60.dp),
-                colors = CardDefaults.cardColors(neworange1)
-            ) {
+        // Header with Image and Title
+        Box {
+
                 TopAppBar(
-                    title = { Text(text = "ABOUT US") },
+                    title = { Text("ABOUT US",fontStyle = FontStyle.Italic, fontSize = 22.sp, fontWeight = FontWeight.Bold) },
                     navigationIcon = {
-                        IconButton(onClick = {}) {Icon(imageVector = Icons.Default.Menu, contentDescription = "") }
-                         }
+                        IconButton(onClick = {navController.navigate(ROUT_ITEM)}) {
+                            Icon(Icons.Default.ArrowForward, contentDescription = "Menu")
+                        }
+                    },
+                    
+                    actions = {
+                        Icon(imageVector = Icons.Default.Home, contentDescription ="shoppingCart" )
+                        Icon(imageVector = Icons.Default.ShoppingCart, contentDescription = "notifications")
+                    }
+
                 )
 
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Scrollable Content Section
+        androidx.compose.foundation.lazy.LazyColumn(
+            contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            item {
+                InfoCard(
+                    title = "WHO ARE WE",
+                    description = "RootRanch operates an extensive database of properties available for Sale or Lease...\n\nWe provide value through large-scale properties used for farming, mining, recreation and more. Trusted by multinational firms for decades.",
+                    onClick = { navController.navigate(ROUT_HOME) }
+                )
             }
-            //end of card
-            Card (
-                modifier= Modifier.fillMaxWidth().height(600.dp)
-                    .align(alignment = Alignment.BottomCenter)
 
-                    .offset(y=90.dp),
-                shape = RoundedCornerShape(bottomStart = 60.dp, bottomEnd = 60.dp, topStart = 60.dp, topEnd = 60.dp)
-            ){
+            item {
+                ImageCard(
+                    imageRes = R.drawable.farm2,
+                    onClick = { navController.navigate(ROUT_ABOUT) }
+                )
+            }
 
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                   
-                ) {
-                    Row (modifier = Modifier.padding(start = 20.dp)){
+            item {
+                Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                    ImageCard(
+                        imageRes = R.drawable.company,
+                        modifier = Modifier.weight(1f),
+                        onClick = { navController.navigate(ROUT_ITEM) }
+                    )
 
-
-                        //card 1
-                        Card (
-                            modifier = Modifier.width(150.dp).height(400.dp).clickable{navController.navigate(
-                                ROUT_HOME
-                            )}
-                        ){
-                            Column(modifier = Modifier.fillMaxSize(),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center) {
-                                Text(text = "WHO ARE WE", fontSize = 20.sp, fontWeight = FontWeight.ExtraBold)
-                           Text(text = "\n" +
-                                   "\n" +
-                                   "RootRanch operate an extensive database of properties owned by us and our associates or partners, which are either available for Sale or Lease.\n" +
-                                   "\n" +
-                                   "Kenya Ranches expertise has grown over the years to source large - scale properties with potential. These are now used throughout the region to provide land that gives our clients excellent value. \n" +
-                                   "\n" +
-                                   "We have grown considerably in the past five decades owning a number of large-scale properties in Eastern Africa.  \n" +
-                                   "\n" +
-                                   "In turn, these lands have been used in a range of sectors, including farming, ranching, mining, land banking, recreation or simply for personal use.  \n" +
-                                   "\n" +
-                                   "Our team has established excellent relationships with a range of multinational farming organisations, investors and entrepreneurs looking for long-term leases. \n" +
-                                   "\n" +
-                                   "In fact, one of the largest fruit and vegetable producers in the world has leased our properties for more than 2 decades.\n")
-                            }
-
-                        }
-                        //end of card 1
-                        Spacer(modifier = Modifier.width(40.dp))
-                        //card 2
-                        Card (
-                            modifier = Modifier.width(150.dp).height(400.dp).clickable{navController.navigate(
-                                ROUT_ABOUT
-                            )}
-                        ){
-                            Column(modifier = Modifier.fillMaxSize(),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center) {
-                                Image(
-                                    painter = painterResource(R.drawable.farm2),
-                                    contentDescription = "home",
-                                            modifier = Modifier.fillMaxHeight().clip(shape = RoundedCornerShape(20.dp)),
-                                    contentScale= ContentScale.FillWidth
-                                )
-
-                            }
-
-                        }
-                        //end of card 1
-
-                    }
-
-
-
-
-
-
-                    //end of row
-
-                    Spacer(modifier = Modifier.height(20.dp))
-
-                    //Row
-                    Row (modifier = Modifier.padding(start = 20.dp)){
-
-
-                        //card 3
-                        Card (modifier = Modifier.width(150.dp).height(180.dp).clickable{navController.navigate(ROUT_ITEM)}
-                        ){
-                            Column(modifier = Modifier.fillMaxSize(),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center) {
-                                Image(
-                                    painter = painterResource(R.drawable.company),
-                                    contentDescription = "home",
-                                    modifier = Modifier.width(200.dp).height(200.dp).clip(shape = RoundedCornerShape(20.dp)),
-                                    contentScale= ContentScale.FillWidth
-
-
-                                )
-
-
-                            }
-
-                        }
-                        //end of card 1
-                        Spacer(modifier = Modifier.width(40.dp))
-                        //card 2
-
-                        Card (modifier = Modifier.width(150.dp).height(180.dp)
-                            .clickable{navController.navigate(
-                                ROUT_ITEM
-                            )}
-                        ){
-                            Column(modifier = Modifier.fillMaxSize(),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center) {
-                                Text(text = "WHY US", fontSize = 20.sp, fontWeight = FontWeight.ExtraBold)
-
-
-                                Text(text = "\n" +
-                                        "\n" +
-                                        "RootRanch’ core objective is to ensure clients’ lease ventures are successful.\n" +
-                                        "\n" +
-                                        "We use our extensive experience to find the best suited land for your planned use within agreed timelines, at optimal prices, with lease durations to help you achieve your business objectives. \n" +
-                                        "\n" +
-                                        "We work to make the process of leasing or acquiring land stress-free and seamless, in order to limit potential business risks, whilst making sure we meet important deadlines. \n" +
-                                        "\n" +
-                                        "Kenya Ranches offers customised and flexible solutions for your business packed with incentives and benefits to help your business succeed.  We are passionate in developing partnerships which last long and are mutually rewarding to both parties. \n" +
-                                        "\n" +
-                                        "This is why we are the choice for discerning and prudent investors wishing to have the right sourcing team for their land leases and acquisitions.\n" +
-                                        " \n", fontSize = 15.sp)
-                            }
-
-                        }
-                        //end of card 1
-
-                    }
-
-
-
-
-
-
-                    //end of row
-
+                    InfoCard(
+                        title = "WHY US",
+                        description = "We match clients with the right land for success. Seamless leasing, custom solutions, and strong partnerships make RootRanch the preferred land sourcing partner.",
+                        fontSize = 14.sp,
+                        modifier = Modifier.weight(1f),
+                        onClick = { navController.navigate(ROUT_ITEM) }
+                    )
                 }
             }
-
         }
-        //end of box
-
-        //Row
-
-
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
 }
 
+// Reusable Info Card
+@Composable
+fun InfoCard(
+    title: String,
+    description: String,
+    modifier: Modifier = Modifier,
+    fontSize: androidx.compose.ui.unit.TextUnit = 15.sp,
+    onClick: () -> Unit
+) {
+    Card(
+        modifier = modifier
+            .fillMaxWidth()
+            .heightIn(min = 180.dp)
+            .clickable(onClick = onClick),
+        shape = RoundedCornerShape(20.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Text(title, fontSize = 20.sp, fontWeight = FontWeight.Bold)
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(description, fontSize = fontSize)
+        }
+    }
+}
+
+// Reusable Image Card
+@Composable
+fun ImageCard(
+    imageRes: Int,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    Card(
+        modifier = modifier
+            .fillMaxSize()
+            .height(200.dp)
+            .clickable(onClick = onClick),
+        shape = RoundedCornerShape(20.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
+    ) {
+        Image(
+            painter = painterResource(id = imageRes),
+            contentDescription = null,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier.clip(RoundedCornerShape(20.dp)).height(200.dp)
+        )
+    }
+}
 
 @Preview(showBackground = true)
 @Composable
-fun AboutScreenPreview(){
-    AboutScreen(rememberNavController())}
+fun AboutScreenPreview() {
+    AboutScreen(rememberNavController())
+}

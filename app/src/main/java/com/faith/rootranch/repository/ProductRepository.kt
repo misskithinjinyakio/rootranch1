@@ -2,7 +2,7 @@ package com.faith.rootranch.repository
 
 import android.content.Context
 import com.faith.harakamall.data.ProductDatabase
-import com.faith.harakamall.model.Product
+
 import com.faith.rootranch.model.Product
 
 class ProductRepository(context: Context) {

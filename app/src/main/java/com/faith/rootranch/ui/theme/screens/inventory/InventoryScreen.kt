@@ -32,8 +32,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -51,10 +54,11 @@ import com.faith.rootranch.ui.theme.neworange
 @Composable
 fun InventoryScreen(navController: NavController){
     Column (modifier = Modifier
+        .paint(painter = painterResource(R.drawable.farm2), contentScale = ContentScale.FillBounds)
         .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center){
-        Text(text = "UPDATE INVENTORY", fontWeight = FontWeight.ExtraBold,
+        Text(text = "UPDATE INVENTORY",fontStyle = FontStyle.Italic, fontWeight = FontWeight.ExtraBold,
             fontSize = (30.sp)
         )
 
@@ -72,7 +76,7 @@ fun InventoryScreen(navController: NavController){
             onValueChange = {name=it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
 
-            label ={Text(text = "name")},
+            label ={Text(text = "name", fontWeight = FontWeight.ExtraBold)},
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = neworange
             ),
@@ -87,7 +91,7 @@ fun InventoryScreen(navController: NavController){
             onValueChange = {date =it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
 
-            label ={Text(text = "date")},
+            label ={Text(text = "date", fontWeight = FontWeight.ExtraBold)},
             colors = OutlinedTextFieldDefaults.colors(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
 
@@ -100,7 +104,7 @@ fun InventoryScreen(navController: NavController){
             onValueChange = {litres=it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
 
-            label ={Text(text = "litres")},
+            label ={Text(text = "litres", fontWeight = FontWeight.ExtraBold)},
             colors = OutlinedTextFieldDefaults.colors(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
 
@@ -113,7 +117,7 @@ fun InventoryScreen(navController: NavController){
             onValueChange = {changes=it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
 
-            label ={Text(text = "changes")},
+            label ={Text(text = "changes", fontWeight = FontWeight.ExtraBold)},
             colors = OutlinedTextFieldDefaults.colors(),
 
             )
@@ -125,7 +129,7 @@ fun InventoryScreen(navController: NavController){
             onValueChange = {fedkgs=it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
 
-            label ={Text(text = "fedkgs")},
+            label ={Text(text = "fedkgs", fontWeight = FontWeight.ExtraBold)},
             colors = OutlinedTextFieldDefaults.colors(),
 
 
@@ -140,7 +144,7 @@ fun InventoryScreen(navController: NavController){
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
         )
-        { Text(text = "update") }
+        { Text(text = "update", fontWeight = FontWeight.ExtraBold) }
 
 
 
