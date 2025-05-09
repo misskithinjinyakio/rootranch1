@@ -55,7 +55,7 @@ import com.faith.rootranch.ui.theme.neworange
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ItemScreen(navController: NavController){
-    Column (modifier = Modifier.fillMaxSize()
+    Column (modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
     ){
         //topappbar
         TopAppBar(title = { Text(text = "Choose and buy your products", fontSize = 20.sp) },
@@ -70,7 +70,7 @@ fun ItemScreen(navController: NavController){
                 ),
             navigationIcon = {
                 IconButton(onClick = {}) {
-                    Icon(imageVector = Icons.Default.Menu, contentDescription = "menu")
+                    Icon(imageVector = Icons.Default.Menu ,contentDescription = "menu")
                 }
             },
             actions = {
@@ -85,7 +85,7 @@ fun ItemScreen(navController: NavController){
 
         // end of topappbar
         Image(
-            painter = painterResource(R.drawable.cow),
+            painter = painterResource(R.drawable.cows),
             contentDescription = "home",
             modifier = Modifier.fillMaxWidth().height(200.dp),
             contentScale = ContentScale.FillWidth
@@ -110,7 +110,7 @@ fun ItemScreen(navController: NavController){
         Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
             Row(modifier = Modifier.padding(start = 20.dp)) {
                 Image(
-                    painter = painterResource(R.drawable.img),
+                    painter = painterResource(R.drawable.heifer),
                     contentDescription = "home",
                     modifier = Modifier.width(200.dp).height(200.dp).clip(shape = RoundedCornerShape(20.dp)),
                     contentScale=ContentScale.FillWidth
@@ -154,7 +154,7 @@ fun ItemScreen(navController: NavController){
 
             Row(modifier = Modifier.padding(start = 20.dp)) {
                 Image(
-                    painter = painterResource(R.drawable.cow),
+                    painter = painterResource(R.drawable.j),
                     contentDescription = "home",
                     modifier = Modifier.width(200.dp).height(200.dp).clip(shape = RoundedCornerShape(20.dp)),
                     contentScale=ContentScale.FillWidth
@@ -196,7 +196,7 @@ fun ItemScreen(navController: NavController){
 
             Row(modifier = Modifier.padding(start = 20.dp)) {
                 Image(
-                    painter = painterResource(R.drawable.cow),
+                    painter = painterResource(R.drawable.g),
                     contentDescription = "home",
                     modifier = Modifier.width(200.dp).height(200.dp).clip(shape = RoundedCornerShape(20.dp)),
                     contentScale=ContentScale.FillWidth
@@ -242,7 +242,7 @@ fun ItemScreen(navController: NavController){
 
             Row(modifier = Modifier.padding(start = 20.dp)) {
                 Image(
-                    painter = painterResource(R.drawable.cow),
+                    painter = painterResource(R.drawable.we),
                     contentDescription = "home",
                     modifier = Modifier.width(200.dp).height(200.dp).clip(shape = RoundedCornerShape(20.dp)),
                     contentScale=ContentScale.FillWidth
@@ -287,7 +287,7 @@ fun ItemScreen(navController: NavController){
 
             Row(modifier = Modifier.padding(start = 20.dp)) {
                 Image(
-                    painter = painterResource(R.drawable.cow),
+                    painter = painterResource(R.drawable.fc),
                     contentDescription = "home",
                     modifier = Modifier.width(200.dp).height(200.dp).clip(shape = RoundedCornerShape(20.dp)),
                     contentScale=ContentScale.FillWidth
@@ -332,7 +332,7 @@ fun ItemScreen(navController: NavController){
 
             Row(modifier = Modifier.padding(start = 20.dp)) {
                 Image(
-                    painter = painterResource(R.drawable.cow),
+                    painter = painterResource(R.drawable.n),
                     contentDescription = "home",
                     modifier = Modifier.width(200.dp).height(200.dp).clip(shape = RoundedCornerShape(20.dp)),
                     contentScale=ContentScale.FillWidth
@@ -395,6 +395,7 @@ fun ItemScreen(navController: NavController){
 
         }
     }
+
 
 
 }

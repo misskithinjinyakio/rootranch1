@@ -1,4 +1,4 @@
-package com.faith.rootranch.ui.theme.screens.order
+package com.faith.rootranch.ui.theme.screens.inventory
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -49,34 +49,30 @@ import com.faith.rootranch.ui.theme.neworange
 
 
 @Composable
-fun OrderScreen(navController: NavController){
+fun InventoryScreen(navController: NavController){
     Column (modifier = Modifier
         .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center){
-        Text(text = "Make your order now !!!!", fontWeight = FontWeight.ExtraBold,
+        Text(text = "UPDATE INVENTORY", fontWeight = FontWeight.ExtraBold,
             fontSize = (30.sp)
         )
-        Spacer(modifier = Modifier.height(20.dp))
-        Image(
-            painter = painterResource(R.drawable.cow),
-            contentDescription = "home",
-            modifier = Modifier.size(200.dp)
-        )
+
+
         Spacer(modifier = Modifier.height(20.dp))
 
-        var fullname by remember { mutableStateOf("") }
-        var productname by remember { mutableStateOf("") }
-        var price by remember { mutableStateOf("") }
-        var phonenumber by remember { mutableStateOf("") }
-        var location by remember { mutableStateOf("") }
+        var name by remember { mutableStateOf("") }
+        var date by remember { mutableStateOf("") }
+        var litres by remember { mutableStateOf("") }
+        var changes by remember { mutableStateOf("") }
+        var fedkgs by remember { mutableStateOf("") }
         //fullname
         OutlinedTextField(
-            value = fullname,
-            onValueChange = {fullname=it},
+            value = name,
+            onValueChange = {name=it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Person, contentDescription = "") },
-            label ={Text(text = "fullname")},
+
+            label ={Text(text = "name")},
             colors = OutlinedTextFieldDefaults.colors(
                 focusedBorderColor = neworange
             ),
@@ -87,11 +83,11 @@ fun OrderScreen(navController: NavController){
         Spacer(modifier = Modifier.height(20.dp))
         //USERNAME
         OutlinedTextField(
-            value = productname ,
-            onValueChange = {productname =it},
+            value = date ,
+            onValueChange = {date =it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Face, contentDescription = "") },
-            label ={Text(text = "productname")},
+
+            label ={Text(text = "date")},
             colors = OutlinedTextFieldDefaults.colors(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
 
@@ -100,11 +96,11 @@ fun OrderScreen(navController: NavController){
         Spacer(modifier = Modifier.height(20.dp))
         //EMAIL
         OutlinedTextField(
-            value = price,
-            onValueChange = {price=it},
+            value = litres,
+            onValueChange = {litres=it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Lock, contentDescription = "") },
-            label ={Text(text = "price")},
+
+            label ={Text(text = "litres")},
             colors = OutlinedTextFieldDefaults.colors(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
 
@@ -113,28 +109,28 @@ fun OrderScreen(navController: NavController){
         Spacer(modifier = Modifier.height(20.dp))
         //PASSWORD
         OutlinedTextField(
-            value = phonenumber,
-            onValueChange = {phonenumber=it},
+            value = changes,
+            onValueChange = {changes=it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.Phone, contentDescription = "") },
-            label ={Text(text = "phonenumber")},
+
+            label ={Text(text = "changes")},
             colors = OutlinedTextFieldDefaults.colors(),
 
-        )
+            )
         //end of PASSWORD
         Spacer(modifier = Modifier.height(20.dp))
         //PASSWORD
         OutlinedTextField(
-            value = location,
-            onValueChange = {location=it},
+            value = fedkgs,
+            onValueChange = {fedkgs=it},
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp),
-            leadingIcon = { Icon(imageVector = Icons.Default.LocationOn, contentDescription = "") },
-            label ={Text(text = "location")},
+
+            label ={Text(text = "fedkgs")},
             colors = OutlinedTextFieldDefaults.colors(),
 
 
 
-        )
+            )
         //end of PASSWORD
         Spacer(modifier = Modifier.height(20.dp))
         Button(onClick = {
@@ -144,7 +140,7 @@ fun OrderScreen(navController: NavController){
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
         )
-        { Text(text = "SEND ORDER") }
+        { Text(text = "update") }
 
 
 
@@ -161,6 +157,6 @@ fun OrderScreen(navController: NavController){
 
 @Preview(showBackground = true)
 @Composable
-fun OrderScreenPreview(){
-    OrderScreen(rememberNavController())
+fun InventoryScreenPreview(){
+    InventoryScreen(rememberNavController())
 }

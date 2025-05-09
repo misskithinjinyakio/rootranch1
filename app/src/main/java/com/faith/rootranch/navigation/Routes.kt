@@ -8,6 +8,8 @@ const val ROUT_REGISTER = "register"
 const val ROUT_LOGIN = "login"
 const val ROUT_ITEM = "item"
 const val ROUT_ORDER = "order"
+const val ROUT_INVENTORY = "inventory"
+const val ROUT_SELL = "sell"
 
 
 //Products

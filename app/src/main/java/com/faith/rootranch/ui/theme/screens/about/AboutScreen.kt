@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
@@ -65,12 +66,14 @@ fun AboutScreen(navController: NavController){
                 TopAppBar(
                     title = { Text(text = "ABOUT US") },
                     navigationIcon = {
-                        IconButton(onClick = {}) {Icon(imageVector = Icons.Default.Menu, contentDescription = "") }             } )
+                        IconButton(onClick = {}) {Icon(imageVector = Icons.Default.Menu, contentDescription = "") }
+                         }
+                )
 
             }
             //end of card
             Card (
-                modifier= Modifier.fillMaxWidth().height(800.dp)
+                modifier= Modifier.fillMaxWidth().height(600.dp)
                     .align(alignment = Alignment.BottomCenter)
 
                     .offset(y=90.dp),

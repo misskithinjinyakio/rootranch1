@@ -14,6 +14,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.faith.harakamall.ui.screens.auth.RegisterScreen
+import com.faith.harakamall.ui.screens.product.AddProductScreen
+import com.faith.harakamall.ui.screens.product.EditProductScreen
+import com.faith.harakamall.ui.screens.product.ProductListScreen
 
 import com.faith.harakamall.ui.screens.splash.SplashScreen
 import com.faith.rootranch.data.UserDatabase
@@ -22,9 +25,12 @@ import com.faith.rootranch.ui.screens.auth.LoginScreen
 import com.faith.rootranch.ui.theme.screens.about.AboutScreen
 import com.faith.rootranch.ui.theme.screens.contact.ContactScreen
 import com.faith.rootranch.ui.theme.screens.home.HomeScreen
+import com.faith.rootranch.ui.theme.screens.inventory.InventoryScreen
 import com.faith.rootranch.ui.theme.screens.item.ItemScreen
 import com.faith.rootranch.ui.theme.screens.order.OrderScreen
+import com.faith.rootranch.ui.theme.screens.sell.SellScreen
 import com.faith.rootranch.viewmodel.AuthViewModel
+import com.faith.rootranch.viewmodel.ProductViewModel
 
 @RequiresApi(Build.VERSION_CODES.Q)
 @Composable
@@ -32,6 +38,7 @@ fun AppNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     startDestination: String = ROUT_SPLASH,
+    productViewModel:ProductViewModel=viewModel(),
 
 
 
@@ -50,6 +57,13 @@ fun AppNavHost(
         composable(ROUT_ABOUT) {
             AboutScreen(navController)
         }
+
+        composable(ROUT_INVENTORY) {
+            InventoryScreen(navController)
+        }
+        composable(ROUT_SELL) {
+            SellScreen(navController)
+        }
         composable(ROUT_ORDER) {
             OrderScreen(navController)
         }
@@ -66,6 +80,7 @@ fun AppNavHost(
 
         }
 
+
         //AUTHENTICATION
 
         // Initialize Room Database and Repository for Authentication
@@ -81,10 +96,30 @@ fun AppNavHost(
         }
 
         composable(ROUT_LOGIN) {
+
             LoginScreen(authViewModel, navController) {
                 navController.navigate(ROUT_HOME) {
                     popUpTo(ROUT_LOGIN) { inclusive = true }
                 }
+            }
+        }
+
+        // PRODUCTS
+        composable(ROUT_ADD_PRODUCT) {
+            AddProductScreen(navController, productViewModel)
+        }
+
+        composable(ROUT_PRODUCT_LIST) {
+            ProductListScreen(navController, productViewModel)
+        }
+
+        composable(
+            route = ROUT_EDIT_PRODUCT,
+            arguments = listOf(navArgument("productId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val productId = backStackEntry.arguments?.getInt("productId")
+            if (productId != null) {
+                EditProductScreen(productId, navController, productViewModel)
             }
         }
 

@@ -18,8 +18,10 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.Add
@@ -30,9 +32,11 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
@@ -88,17 +92,17 @@ fun HomeScreen(navController: NavController) {
             TopAppBar(
 
                 navigationIcon = {
-                    IconButton(onClick = { /* Handle back */ }) {
-                        Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                    IconButton(onClick = {navController.navigate(ROUT_ABOUT)}) {
+                        Icon(Icons.Default.ArrowForward, contentDescription = "forward")
                     }
                 },
                 actions = {
-                    IconButton(onClick = {}) {
+                    IconButton(onClick = {"faithkithinji39@gmail.com"}) {
                         Icon(imageVector = Icons.Default.Email, contentDescription = "menu")
                     }
 
 
-                }  ,title = { Text("RootRanch") },
+                }  ,title = { Text("RootRanch farm") },
 
 
 
@@ -112,12 +116,12 @@ fun HomeScreen(navController: NavController) {
         bottomBar = {
             NavigationBar(containerColor = Color.Black) {
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Home, contentDescription = "Home") },
-                    label = { Text("Home") },
+                    icon = { Icon(Icons.Default.ShoppingCart, contentDescription = "Home") },
+                    label = { Text("shopus") },
                     selected = selectedIndex == 0,
                     onClick = {
                         selectedIndex = 0
-                        navController.navigate(ROUT_HOME)
+                        navController.navigate(ROUT_ITEM)
                     }
                 )
                 NavigationBarItem(
@@ -130,7 +134,7 @@ fun HomeScreen(navController: NavController) {
                     }
                 )
                 NavigationBarItem(
-                    icon = { Icon(Icons.Default.Settings, contentDescription = "Contact") },
+                    icon = { Icon(Icons.Default.Place, contentDescription = "Contact") },
                     label = { Text("Contact") },
                     selected = selectedIndex == 2,
                     onClick = {
@@ -150,6 +154,7 @@ fun HomeScreen(navController: NavController) {
                             colors = listOf(Color(0xFFFFF3E0), Color(0xFFFFCC80))
                         )
                     )
+                    .verticalScroll(rememberScrollState())
             ) {
                 Image(
                 painter = painterResource(R.drawable.logo),
