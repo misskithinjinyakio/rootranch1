@@ -25,8 +25,15 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
 import com.faith.rootranch.R
+import com.faith.rootranch.navigation.ROUT_ABOUT
 import com.faith.rootranch.navigation.ROUT_ADD_PRODUCT
+import com.faith.rootranch.navigation.ROUT_CONTACT
+import com.faith.rootranch.navigation.ROUT_HOME
+import com.faith.rootranch.navigation.ROUT_INVENTORY
+import com.faith.rootranch.navigation.ROUT_ITEM
+import com.faith.rootranch.navigation.ROUT_ORDER
 import com.faith.rootranch.navigation.ROUT_PRODUCT_LIST
+import com.faith.rootranch.navigation.ROUT_SELL
 import com.faith.rootranch.viewmodel.ProductViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -77,6 +84,62 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                             text = { Text("Add Product") },
                             onClick = {
                                 navController.navigate(ROUT_ADD_PRODUCT)
+                                showMenu = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("Add Product") },
+                            onClick = {
+                                navController.navigate(ROUT_ADD_PRODUCT)
+                                showMenu = false
+                            }
+                        )
+                        DropdownMenuItem(
+                                text = { Text("home") },
+                        onClick = {
+                            navController.navigate(ROUT_HOME)
+                            showMenu = false
+                        }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("about") },
+                            onClick = {
+                                navController.navigate(ROUT_ABOUT)
+                                showMenu = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("contact") },
+                            onClick = {
+                                navController.navigate(ROUT_CONTACT)
+                                showMenu = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("inventory") },
+                            onClick = {
+                                navController.navigate(ROUT_INVENTORY)
+                                showMenu = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("item") },
+                            onClick = {
+                                navController.navigate(ROUT_ITEM)
+                                showMenu = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("Order ") },
+                            onClick = {
+                                navController.navigate(ROUT_ORDER)
+                                showMenu = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("sell") },
+                            onClick = {
+                                navController.navigate(ROUT_SELL)
                                 showMenu = false
                             }
                         )

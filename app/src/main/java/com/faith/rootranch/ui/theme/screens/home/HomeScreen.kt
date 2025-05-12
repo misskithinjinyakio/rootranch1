@@ -31,7 +31,9 @@ import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Search
@@ -42,6 +44,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -76,16 +80,22 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.faith.rootranch.R
 import com.faith.rootranch.navigation.ROUT_ABOUT
+import com.faith.rootranch.navigation.ROUT_ADD_PRODUCT
 import com.faith.rootranch.navigation.ROUT_CONTACT
 import com.faith.rootranch.navigation.ROUT_HOME
+import com.faith.rootranch.navigation.ROUT_INVENTORY
 import com.faith.rootranch.navigation.ROUT_ITEM
+import com.faith.rootranch.navigation.ROUT_ORDER
+import com.faith.rootranch.navigation.ROUT_PRODUCT_LIST
+import com.faith.rootranch.navigation.ROUT_SELL
 import com.faith.rootranch.ui.theme.neworange
 import com.faith.rootranch.ui.theme.neworange1
-import com.faith.rootranch.ui.theme.screens.contact.ContactScreen
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController) {
+    var showMenu by remember { mutableStateOf(false) }
     var selectedIndex by remember { mutableStateOf(0) }
 
     Scaffold(
@@ -93,17 +103,69 @@ fun HomeScreen(navController: NavController) {
             TopAppBar(
 
                 navigationIcon = {
-                    IconButton(onClick = {navController.navigate(ROUT_ABOUT)}) {
-                        Icon(Icons.Default.ArrowForward, contentDescription = "forward")
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "Back")
                     }
                 },
                 actions = {
-                    IconButton(onClick = {"faithkithinji39@gmail.com"}) {
-                        Icon(imageVector = Icons.Default.Email, contentDescription = "menu")
+                    IconButton(onClick = { showMenu = true }) {
+                        Icon(imageVector = Icons.Default.MoreVert, contentDescription = "Menu")
                     }
-
-
-                }  ,title = { Text("RootRanch farm") },
+                    DropdownMenu(
+                        expanded = showMenu,
+                        onDismissRequest = { showMenu = false }
+                    ) {
+                        DropdownMenuItem(
+                            text = { Text("about") },
+                            onClick = {
+                                navController.navigate(ROUT_ABOUT)
+                                showMenu = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("Add Product") },
+                            onClick = {
+                                navController.navigate(ROUT_ADD_PRODUCT)
+                                showMenu = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("inventory") },
+                            onClick = {
+                                navController.navigate(ROUT_INVENTORY)
+                                showMenu = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("sell") },
+                            onClick = {
+                                navController.navigate(ROUT_SELL)
+                                showMenu = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("order") },
+                            onClick = {
+                                navController.navigate(ROUT_ORDER)
+                                showMenu = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("item") },
+                            onClick = {
+                                navController.navigate(ROUT_ITEM)
+                                showMenu = false
+                            }
+                        )
+                        DropdownMenuItem(
+                            text = { Text("contact") },
+                            onClick = {
+                                navController.navigate(ROUT_CONTACT)
+                                showMenu = false
+                            }
+                        )
+                    }
+                } ,title = { Text("RootRanch farm") },
 
 
 
@@ -155,15 +217,19 @@ fun HomeScreen(navController: NavController) {
                             colors = listOf(Color(0xFFFFF3E0), Color(0xFF244105))
                         )
                     )
-                    .verticalScroll(rememberScrollState())
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+
             ) {
                 Image(
                 painter = painterResource(R.drawable.logo),
                 contentDescription = "Home Cow",
                 modifier = Modifier
-                    .size(120.dp)
+                    .size(200.dp)
                     .clip(CircleShape),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.Crop,
+
             )
                 Text(text = "What to reach us on social media?",fontStyle = FontStyle.Italic)
                 Text(text = "Reach @rootranch.com ",fontStyle = FontStyle.Italic)
@@ -248,7 +314,7 @@ fun HomeScreen(navController: NavController) {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Image(
-                                painter = painterResource(R.drawable.cow),
+                                painter = painterResource(R.drawable.farm10),
                                 contentDescription = "Cow",
                                 modifier = Modifier.size(100.dp).clip(CircleShape)
                             )
@@ -276,7 +342,7 @@ fun HomeScreen(navController: NavController) {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Image(
-                                painter = painterResource(R.drawable.cow),
+                                painter = painterResource(R.drawable.farm1),
                                 contentDescription = "Cow",
                                 modifier = Modifier.size(100.dp).clip(CircleShape)
                             )
@@ -313,7 +379,7 @@ fun HomeScreen(navController: NavController) {
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Image(
-                                painter = painterResource(R.drawable.cow),
+                                painter = painterResource(R.drawable.cows),
                                 contentDescription = "Cow",
                                 modifier = Modifier.size(100.dp).clip(CircleShape)
                             )

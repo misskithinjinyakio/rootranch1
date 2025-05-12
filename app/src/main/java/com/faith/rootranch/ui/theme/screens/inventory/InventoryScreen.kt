@@ -15,16 +15,24 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -46,15 +54,109 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.faith.rootranch.R
+import com.faith.rootranch.navigation.ROUT_ABOUT
+import com.faith.rootranch.navigation.ROUT_ADD_PRODUCT
+import com.faith.rootranch.navigation.ROUT_CONTACT
+import com.faith.rootranch.navigation.ROUT_HOME
+import com.faith.rootranch.navigation.ROUT_INVENTORY
+import com.faith.rootranch.navigation.ROUT_ITEM
+import com.faith.rootranch.navigation.ROUT_ORDER
+import com.faith.rootranch.navigation.ROUT_SELL
 
 import com.faith.rootranch.ui.theme.neworange
+import com.faith.rootranch.ui.theme.newwhite
 
 
-
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun InventoryScreen(navController: NavController){
+    var showMenu by remember { mutableStateOf(false) }
+    //topappbar
+    TopAppBar(title = { Text(text = "Update", fontSize = 20.sp) },
+        colors = TopAppBarDefaults.topAppBarColors(
+            containerColor = newwhite,
+            titleContentColor = neworange,
+            navigationIconContentColor = neworange,
+            actionIconContentColor = neworange,
+
+
+
+            ),
+
+        navigationIcon = {
+            IconButton(onClick = { navController.popBackStack() }) {
+                Icon(imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "Back")
+            }
+        },
+        actions = {
+            IconButton(onClick = { showMenu = true }) {
+                Icon(imageVector = Icons.Default.MoreVert, contentDescription = "Menu")
+            }
+            DropdownMenu(
+                expanded = showMenu,
+                onDismissRequest = { showMenu = false }
+            ) {
+                DropdownMenuItem(
+                    text = { Text("about") },
+                    onClick = {
+                        navController.navigate(ROUT_ABOUT)
+                        showMenu = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("Add Product") },
+                    onClick = {
+                        navController.navigate(ROUT_ADD_PRODUCT)
+                        showMenu = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("home") },
+                    onClick = {
+                        navController.navigate(ROUT_HOME)
+                        showMenu = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("sell") },
+                    onClick = {
+                        navController.navigate(ROUT_SELL)
+                        showMenu = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("order") },
+                    onClick = {
+                        navController.navigate(ROUT_ORDER)
+                        showMenu = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("item") },
+                    onClick = {
+                        navController.navigate(ROUT_ITEM)
+                        showMenu = false
+                    }
+                )
+                DropdownMenuItem(
+                    text = { Text("contact") },
+                    onClick = {
+                        navController.navigate(ROUT_CONTACT)
+                        showMenu = false
+                    }
+                )
+            }
+        }
+
+    )
+
+
+
+
+    // end of topappbar
+
     Column (modifier = Modifier
-        .paint(painter = painterResource(R.drawable.farm2), contentScale = ContentScale.FillBounds)
+
         .fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center){

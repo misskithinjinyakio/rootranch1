@@ -43,7 +43,7 @@ import com.faith.rootranch.model.Product
 import com.faith.rootranch.navigation.ROUT_ADD_PRODUCT
 import com.faith.rootranch.navigation.ROUT_EDIT_PRODUCT
 import com.faith.rootranch.navigation.ROUT_PRODUCT_LIST
-import com.faith.rootranch.navigation.editProductRoute
+
 
 import java.io.IOException
 import java.io.OutputStream
@@ -213,7 +213,7 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                         onClick = {
                             val smsIntent = Intent(Intent.ACTION_SENDTO)
                             smsIntent.data = "smsto:${product.phone}".toUri()
-                            smsIntent.putExtra("sms_body", "Hello Seller,...?")
+                            smsIntent.putExtra("sms_body", "product added")
                             context.startActivity(smsIntent)
                         },
                         shape = RoundedCornerShape(8.dp),
@@ -229,28 +229,7 @@ fun ProductItem(navController: NavController, product: Product, viewModel: Produ
                     }
 
                     // Edit Product
-                    IconButton(
-                        onClick = {
-                            navController.navigate(ROUT_EDIT_PRODUCT)
-                        }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Edit,
-                            contentDescription = "Edit",
-                            tint = Color.White
-                        )
-                    }
 
-                    // Delete Product
-                    IconButton(
-                        onClick = { viewModel.deleteProduct(product) }
-                    ) {
-                        Icon(
-                            imageVector = Icons.Default.Delete,
-                            contentDescription = "Delete",
-                            tint = Color.White
-                        )
-                    }
 
                     // Download PDF
                     IconButton(

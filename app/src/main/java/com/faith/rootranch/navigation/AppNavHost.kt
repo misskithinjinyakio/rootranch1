@@ -21,9 +21,10 @@ import com.faith.harakamall.ui.screens.product.ProductListScreen
 import com.faith.harakamall.ui.screens.splash.SplashScreen
 import com.faith.rootranch.data.UserDatabase
 import com.faith.rootranch.repository.UserRepository
+import com.faith.rootranch.ui.screens.ContactScreen
 import com.faith.rootranch.ui.screens.auth.LoginScreen
 import com.faith.rootranch.ui.theme.screens.about.AboutScreen
-import com.faith.rootranch.ui.theme.screens.contact.ContactScreen
+
 import com.faith.rootranch.ui.theme.screens.home.HomeScreen
 import com.faith.rootranch.ui.theme.screens.inventory.InventoryScreen
 import com.faith.rootranch.ui.theme.screens.item.ItemScreen

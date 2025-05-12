@@ -16,13 +16,17 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -48,6 +52,14 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.faith.rootranch.R
+import com.faith.rootranch.navigation.ROUT_ABOUT
+import com.faith.rootranch.navigation.ROUT_ADD_PRODUCT
+import com.faith.rootranch.navigation.ROUT_CONTACT
+import com.faith.rootranch.navigation.ROUT_HOME
+import com.faith.rootranch.navigation.ROUT_INVENTORY
+import com.faith.rootranch.navigation.ROUT_ITEM
+import com.faith.rootranch.navigation.ROUT_ORDER
+import com.faith.rootranch.navigation.ROUT_SELL
 import com.faith.rootranch.ui.theme.neworange
 import com.faith.rootranch.ui.theme.newwhite
 import com.faith.rootranch.ui.theme.neworange
@@ -55,6 +67,7 @@ import com.faith.rootranch.ui.theme.neworange
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ItemScreen(navController: NavController){
+    var showMenu by remember { mutableStateOf(false) }
     Column (modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
     ){
         //topappbar
@@ -68,14 +81,70 @@ fun ItemScreen(navController: NavController){
 
 
                 ),
+
             navigationIcon = {
-                IconButton(onClick = {}) {
-                    Icon(imageVector = Icons.Default.Menu ,contentDescription = "menu")
+                IconButton(onClick = { navController.popBackStack() }) {
+                    Icon(imageVector = Icons.Default.KeyboardArrowLeft, contentDescription = "Back")
                 }
             },
             actions = {
-                Icon(imageVector = Icons.Default.ShoppingCart, contentDescription ="shoppingCart" )
-                Icon(imageVector = Icons.Default.Notifications, contentDescription = "notifications")
+                IconButton(onClick = { showMenu = true }) {
+                    Icon(imageVector = Icons.Default.MoreVert, contentDescription = "Menu")
+                }
+                DropdownMenu(
+                    expanded = showMenu,
+                    onDismissRequest = { showMenu = false }
+                ) {
+                    DropdownMenuItem(
+                        text = { Text("about") },
+                        onClick = {
+                            navController.navigate(ROUT_ABOUT)
+                            showMenu = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("Add Product") },
+                        onClick = {
+                            navController.navigate(ROUT_ADD_PRODUCT)
+                            showMenu = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("inventory") },
+                        onClick = {
+                            navController.navigate(ROUT_INVENTORY)
+                            showMenu = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("sell") },
+                        onClick = {
+                            navController.navigate(ROUT_SELL)
+                            showMenu = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("order") },
+                        onClick = {
+                            navController.navigate(ROUT_ORDER)
+                            showMenu = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("home") },
+                        onClick = {
+                            navController.navigate(ROUT_HOME)
+                            showMenu = false
+                        }
+                    )
+                    DropdownMenuItem(
+                        text = { Text("contact") },
+                        onClick = {
+                            navController.navigate(ROUT_CONTACT)
+                            showMenu = false
+                        }
+                    )
+                }
             }
 
         )
@@ -107,7 +176,7 @@ fun ItemScreen(navController: NavController){
         Spacer(modifier = Modifier.height(20.dp))
         //Row starts
 
-        Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+        Column(modifier = Modifier) {
             Row(modifier = Modifier.padding(start = 20.dp)) {
                 Image(
                     painter = painterResource(R.drawable.heifer),
@@ -137,7 +206,7 @@ fun ItemScreen(navController: NavController){
                     )
 
 
-                    Button(onClick = {},
+                    Button(onClick =   {   navController.navigate(ROUT_ORDER)},
                         colors= ButtonDefaults.buttonColors(Color.Black),
                         shape = RoundedCornerShape(10.dp))
                     { Text(text = "Buy Now") }
@@ -181,7 +250,7 @@ fun ItemScreen(navController: NavController){
                     )
 
 
-                    Button(onClick = {},
+                    Button(onClick = { navController.navigate(ROUT_ORDER)},
                         colors= ButtonDefaults.buttonColors(Color.Black),
                         shape = RoundedCornerShape(10.dp))
                     { Text(text = "buy now") }
@@ -226,7 +295,7 @@ fun ItemScreen(navController: NavController){
                     )
 
 
-                    Button(onClick = {},
+                    Button(onClick = { navController.navigate(ROUT_ORDER)},
                         colors= ButtonDefaults.buttonColors(Color.Black),
                         shape = RoundedCornerShape(10.dp))
                     { Text(text = "Buy now") }
@@ -272,7 +341,7 @@ fun ItemScreen(navController: NavController){
                         )
 
 
-                    Button(onClick = {},
+                    Button(onClick = { navController.navigate(ROUT_ORDER)},
                         colors= ButtonDefaults.buttonColors(Color.Black),
                         shape = RoundedCornerShape(10.dp))
                     { Text(text = "Buy now") }
@@ -317,7 +386,7 @@ fun ItemScreen(navController: NavController){
                         )
 
 
-                    Button(onClick = {},
+                    Button(onClick = { navController.navigate(ROUT_ORDER)},
                         colors= ButtonDefaults.buttonColors(Color.Black),
                         shape = RoundedCornerShape(10.dp))
                     { Text(text = "Buy now") }
@@ -362,7 +431,7 @@ fun ItemScreen(navController: NavController){
                         )
 
 
-                    Button(onClick = {},
+                    Button(onClick = { navController.navigate(ROUT_ORDER)},
                         colors= ButtonDefaults.buttonColors(Color.Black),
                         shape = RoundedCornerShape(10.dp))
                     { Text(text = "Buy now") }

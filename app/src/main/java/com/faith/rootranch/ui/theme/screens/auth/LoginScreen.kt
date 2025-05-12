@@ -65,7 +65,12 @@ fun LoginScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(20.dp),
+            .padding(20.dp)
+            .background(
+                brush = Brush.verticalGradient(
+                    colors = listOf(Color(0xFFFFF3E0), Color(0xFF244105))
+                )
+            ),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -78,7 +83,7 @@ fun LoginScreen(
             Text(
                 text = "Welcome Back!",
                 fontSize = 40.sp,
-                fontFamily = FontFamily.Cursive
+                fontFamily = FontFamily.Serif
             )
         }
 
