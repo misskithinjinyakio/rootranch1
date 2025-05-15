@@ -27,7 +27,6 @@ import coil.compose.rememberAsyncImagePainter
 import com.faith.rootranch.R
 import com.faith.rootranch.navigation.ROUT_ABOUT
 import com.faith.rootranch.navigation.ROUT_ADD_PRODUCT
-import com.faith.rootranch.navigation.ROUT_CONTACT
 import com.faith.rootranch.navigation.ROUT_HOME
 import com.faith.rootranch.navigation.ROUT_INVENTORY
 import com.faith.rootranch.navigation.ROUT_ITEM
@@ -58,7 +57,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Add Product", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
+                title = { Text("Add Stocks", fontSize = 20.sp, fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(Color.LightGray),
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
@@ -108,13 +107,7 @@ fun AddProductScreen(navController: NavController, viewModel: ProductViewModel) 
                                 showMenu = false
                             }
                         )
-                        DropdownMenuItem(
-                            text = { Text("contact") },
-                            onClick = {
-                                navController.navigate(ROUT_CONTACT)
-                                showMenu = false
-                            }
-                        )
+
                         DropdownMenuItem(
                             text = { Text("inventory") },
                             onClick = {

@@ -64,7 +64,7 @@ fun ProductListScreen(navController: NavController, viewModel: ProductViewModel)
         topBar = {
             Column {
                 TopAppBar(
-                    title = { Text("Products", fontSize = 20.sp) },
+                    title = { Text("stocks", fontSize = 20.sp, fontWeight = FontWeight.ExtraBold) },
                     colors = TopAppBarDefaults.mediumTopAppBarColors(Color.LightGray),
                     actions = {
                         IconButton(onClick = { showMenu = true }) {

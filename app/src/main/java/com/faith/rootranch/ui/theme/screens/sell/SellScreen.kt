@@ -56,7 +56,6 @@ import androidx.navigation.compose.rememberNavController
 import com.faith.rootranch.R
 import com.faith.rootranch.navigation.ROUT_ABOUT
 import com.faith.rootranch.navigation.ROUT_ADD_PRODUCT
-import com.faith.rootranch.navigation.ROUT_CONTACT
 import com.faith.rootranch.navigation.ROUT_HOME
 import com.faith.rootranch.navigation.ROUT_INVENTORY
 import com.faith.rootranch.navigation.ROUT_ITEM
@@ -138,13 +137,7 @@ fun SellScreen(navController: NavController){
                         showMenu = false
                     }
                 )
-                DropdownMenuItem(
-                    text = { Text("contact") },
-                    onClick = {
-                        navController.navigate(ROUT_CONTACT)
-                        showMenu = false
-                    }
-                )
+
             }
         }
 

@@ -43,6 +43,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
@@ -55,7 +56,6 @@ import androidx.navigation.compose.rememberNavController
 import com.faith.rootranch.R
 import com.faith.rootranch.navigation.ROUT_ABOUT
 import com.faith.rootranch.navigation.ROUT_ADD_PRODUCT
-import com.faith.rootranch.navigation.ROUT_CONTACT
 import com.faith.rootranch.navigation.ROUT_HOME
 import com.faith.rootranch.navigation.ROUT_INVENTORY
 import com.faith.rootranch.navigation.ROUT_ITEM
@@ -70,6 +70,7 @@ import com.faith.rootranch.ui.theme.newwhite
 @Composable
 fun OrderScreen(navController: NavController){
     var showMenu by remember { mutableStateOf(false) }
+    var mContext= LocalContext.current
     //topappbar
     TopAppBar(title = { Text(text = "make your order", fontSize = 20.sp) },
         colors = TopAppBarDefaults.topAppBarColors(
@@ -137,13 +138,7 @@ fun OrderScreen(navController: NavController){
                         showMenu = false
                     }
                 )
-                DropdownMenuItem(
-                    text = { Text("contact") },
-                    onClick = {
-                        navController.navigate(ROUT_CONTACT)
-                        showMenu = false
-                    }
-                )
+
             }
         }
 
@@ -241,16 +236,19 @@ fun OrderScreen(navController: NavController){
 
         )
         //end of PASSWORD
-        Spacer(modifier = Modifier.height(20.dp))
         Button(onClick = {
+            val simToolKitLaunchIntent =
+                mContext.packageManager.getLaunchIntentForPackage("com.android.stk")
+            simToolKitLaunchIntent?.let { mContext.startActivity(it) }
+
 
         },
             colors= ButtonDefaults.buttonColors(Color.Black),
             shape = RoundedCornerShape(10.dp),
             modifier = Modifier.fillMaxWidth().padding(start = 20.dp)
         )
-        { Text(text = "SEND ORDER") }
-
+        { Text(text = "ORDER SEND") }
+        Spacer(modifier = Modifier.height(20.dp))
 
 
 

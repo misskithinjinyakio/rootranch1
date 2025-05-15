@@ -21,7 +21,6 @@ import com.faith.harakamall.ui.screens.product.ProductListScreen
 import com.faith.harakamall.ui.screens.splash.SplashScreen
 import com.faith.rootranch.data.UserDatabase
 import com.faith.rootranch.repository.UserRepository
-import com.faith.rootranch.ui.screens.ContactScreen
 import com.faith.rootranch.ui.screens.auth.LoginScreen
 import com.faith.rootranch.ui.theme.screens.about.AboutScreen
 
@@ -68,10 +67,7 @@ fun AppNavHost(
         composable(ROUT_ORDER) {
             OrderScreen(navController)
         }
-        composable(ROUT_CONTACT) {
-            ContactScreen(navController)
 
-        }
         composable(ROUT_SPLASH) {
             SplashScreen(navController)
 
